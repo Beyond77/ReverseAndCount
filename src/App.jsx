@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Input from "./components/Input";
-import { reverseString, reverseWordsInString } from "./utils/reverseString";
-import { countDigitOccurrences, countOcurrencies } from "./utils/countOcurrencies";
+import { reverseString } from "./utils/reverseString";
+import { countOcurrencies } from "./utils/countOcurrencies";
 
 function App() {
 
