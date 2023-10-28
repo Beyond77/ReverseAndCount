@@ -45,7 +45,7 @@ function App() {
     <main>
       <form>
 
-        <div className="flex-wrapper">
+        <div className="flex-wrapper-column align-items-start">
           <Input
             label="Enter string to reverse"
             name="stringInput"
@@ -70,18 +70,19 @@ function App() {
 
 
         {formInputNumber.map((formFields) => (
-          <div className="flex-wrapper">
+          <div className="flex-wrapper align-items-start">
             <Input
               label="Enter number"
               name="stringInput"
               value={formFields.num}
               type="text"
-              placeholder="Type string to reverse"
+              placeholder="Type string number"
               onChange={(e) => handleFieldChange(formFields.id, e.target.value)}
             />
             <button type="button" onClick={() => removeFormField(formFields.id)}>delete</button>
           </div>
         ))}
+
         <button type="button" onClick={addFormField}>
           Add another number
         </button>

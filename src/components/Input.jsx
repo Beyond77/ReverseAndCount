@@ -2,7 +2,7 @@ import React from "react";
 
 const Input = ({ label, type, value, name, placeholder, onChange }) => {
   return (
-    <div className="input-wrapper">
+    <div className="flex-wrapper">
       <label htmlFor={label}>{label}</label>
       <input
         type={type}
