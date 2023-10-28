@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import Input from "./components/Input";
-import { reverseWordsInString } from "./utils/reverseString";
-import { countDigitOccurrences } from "./utils/countOcurrencies";
+import { reverseString, reverseWordsInString } from "./utils/reverseString";
+import { countDigitOccurrences, countOcurrencies } from "./utils/countOcurrencies";
 
 function App() {
 
@@ -37,8 +37,8 @@ function App() {
   const sendForm = (e) => {
     e.preventDefault()
     const result = formInputNumber.map(item => parseInt(item.num));
-    setResultCount(countDigitOccurrences(result, formData.countInput))
-    setResultString(reverseWordsInString(formData.stringInput))
+    setResultCount(countOcurrencies(result, formData.countInput))
+    setResultString(reverseString(formData.stringInput))
   }
 
   return (
