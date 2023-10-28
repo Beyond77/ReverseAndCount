@@ -37,7 +37,11 @@ h1 {
 }
 
 label, p, input {
-  margin: 5px 5px 
+  margin: 5px 5px;
+}
+
+button {
+  margin-bottom: 5px;
 }
 
 button {

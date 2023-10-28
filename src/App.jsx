@@ -83,9 +83,12 @@ function App() {
           </div>
         ))}
 
+      <div>
         <button type="button" onClick={addFormField}>
-          Add another number
+            Add another number
         </button>
+      </div>
+       
 
         <button type="submit" onClick={sendForm}>
           Calculate ocurrencies
