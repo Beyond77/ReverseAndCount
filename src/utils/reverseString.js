@@ -1,4 +1,4 @@
-export const reverseWordsInString = (str) => {
+export const reverseString = (str) => {
     const reverseWord = (word) => {
       if (word === "") {
         return "";
