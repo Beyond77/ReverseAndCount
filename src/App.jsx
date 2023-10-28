@@ -1,35 +1,99 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Input from "./components/Input";
+import { reverseWordsInString } from "./utils/reverseString";
+import { countDigitOccurrences } from "./utils/countOcurrencies";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [formData, setFormData] = useState({ stringInput: "", countInput: 0 });
+  const [formInputNumber, setFormInputNumber] = useState([{ id: 1, num: "" }]);
+  const [resultCount, setResultCount] = useState();
+  const [resultString, setResultString] = useState("");
+
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+    setFormData({...formData,  [name]: value });
+  };
+
+  const addFormField = () => {
+    const lastId = formInputNumber[formInputNumber.length - 1]?.id || 0;
+    setFormInputNumber([...formInputNumber, { id: lastId + 1, num: "" }]);
+  };
+
+  const handleFieldChange = (id, value) => {
+    setFormInputNumber((prevFormFields) => {
+      return prevFormFields.map((field) =>
+        field.id === id ? { ...field, num: value } : field
+      );
+    });
+  };
+
+  const removeFormField = (id) => {
+    const updatedFormFields = formInputNumber.filter((field) => field.id !== id);
+    setFormInputNumber(updatedFormFields);
+  };
+
+  const sendForm = (e) => {
+    e.preventDefault()
+    const result = formInputNumber.map(item => parseInt(item.num));
+    setResultCount(countDigitOccurrences(result, formData.countInput))
+    setResultString(reverseWordsInString(formData.stringInput))
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <main>
+      <form>
+
+        <div className="flex-wrapper">
+          <Input
+            label="Enter string to reverse"
+            name="stringInput"
+            value={formData.stringInput}
+            type="text"
+            placeholder="Type string to reverse"
+            onChange={onChangeInput}
+          />
+
+          <p>Reversed string: {resultString}</p>
+        </div>
+        
+
+        <Input
+          label="Enter number for count"
+          name="countInput"
+          value={formData.countInput}
+          type="text"
+          placeholder="Type number to count"
+          onChange={onChangeInput}
+        />
+
+
+        {formInputNumber.map((formFields) => (
+          <div className="flex-wrapper">
+            <Input
+              label="Enter number"
+              name="stringInput"
+              value={formFields.num}
+              type="text"
+              placeholder="Type string to reverse"
+              onChange={(e) => handleFieldChange(formFields.id, e.target.value)}
+            />
+            <button type="button" onClick={() => removeFormField(formFields.id)}>delete</button>
+          </div>
+        ))}
+        <button type="button" onClick={addFormField}>
+          Add another number
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+        <button type="submit" onClick={sendForm}>
+          Calculate ocurrencies
+        </button>
+
+        <p>{resultCount}</p>
+      </form>
+    </main>
+  );
 }
 
-export default App
+export default App;
