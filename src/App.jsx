@@ -63,7 +63,7 @@ function App() {
           label="Enter number for count"
           name="countInput"
           value={formData.countInput}
-          type="text"
+          type="number"
           placeholder="Type number to count"
           onChange={onChangeInput}
         />
@@ -75,7 +75,7 @@ function App() {
               label="Enter number"
               name="stringInput"
               value={formFields.num}
-              type="text"
+              type="number"
               placeholder="Type string number"
               onChange={(e) => handleFieldChange(formFields.id, e.target.value)}
             />
